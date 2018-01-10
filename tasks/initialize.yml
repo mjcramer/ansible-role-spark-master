@@ -1,0 +1,9 @@
+# roles/spark-master/tasks/initialize.yml
+---
+- meta: flush_handlers
+
+- name: initialize | start spark master
+  service:
+    name: spark-master
+    enabled: yes
+    state: started

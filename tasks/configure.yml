@@ -1,0 +1,23 @@
+# roles/spark-master/tasks/configure.yml
+---
+- name: configure | create exec script
+  template:
+    src: wrapper.sh.j2
+    dest: "{{ base_daemon_dir }}/spark-master-service.sh"
+    mode: 0755
+
+- name: configure | create systemd configuration
+  template:
+    src: systemd.service.j2
+    dest: "{{ systemd_service_dir }}/spark-master.service"
+    mode: 0644
+  notify:
+    - reload systemd
+
+# - name: configure | create logging configuration
+#   template:
+#     src: log4j.properties.j2
+#     dest: "{{ spark_master.conf_dir }}/log4j.properties"
+#   notify:
+#     - restart spark_master
+#

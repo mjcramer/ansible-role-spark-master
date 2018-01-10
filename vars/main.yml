@@ -1,0 +1,4 @@
+# roles/spark-master/vars/main.yml
+---
+spark_master:
+  lib_dir: test
